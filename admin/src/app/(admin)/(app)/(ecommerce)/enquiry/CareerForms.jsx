@@ -40,6 +40,7 @@ const CareerForms = () => {
 
   // ✅ DIRECT GOOGLE DOCS PREVIEW (FULLSCREEN + SAVE TO DRIVE)
   const handlePreviewCV = (cvUrl) => {
+     console.log("CV URL =>", cvUrl);
     if (!cvUrl) {
       alert("CV not available");
       return;

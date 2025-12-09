@@ -1,3 +1,4 @@
+// controllers/careerController.js
 import Career from "../models/Career.js";
 import {
   uploadFilesToCloudinary,
@@ -13,7 +14,7 @@ export const addCareer = async (req, res) => {
     const { name, email, phone, position, message } = req.body;
     let cvUrl = "";
 
-    // Upload file from buffer
+    // ✅ Upload file from buffer to Cloudinary
     if (req.file) {
       const fileData = {
         buffer: req.file.buffer,
@@ -21,8 +22,16 @@ export const addCareer = async (req, res) => {
         mimetype: req.file.mimetype,
       };
 
-      const [uploaded] = await uploadFilesToCloudinary([fileData], "careers_cv");
-      cvUrl = uploaded;
+      const [uploadedUrl] = await uploadFilesToCloudinary(
+        [fileData],
+        "careers_cv"
+      );
+
+      console.log("Uploaded CV URL from Cloudinary =>", uploadedUrl);
+
+      if (uploadedUrl) {
+        cvUrl = uploadedUrl; // ✅ pure HTTPS Cloudinary URL string
+      }
     }
 
     const career = await Career.create({
@@ -50,10 +59,8 @@ export const getCareers = async (req, res) => {
   try {
     const careers = await Career.find().sort({ createdAt: -1 });
 
-    // ✅ Add “force download” Cloudinary link
     const updatedCareers = careers.map((c) => ({
       ...c._doc,
-      // ✅ Automatically adds `fl_attachment` to force download
       downloadLink: c.cv
         ? c.cv.replace("/upload/", "/upload/fl_attachment/")
         : "",
@@ -75,7 +82,6 @@ export const getCareerById = async (req, res) => {
         .status(404)
         .json({ success: false, message: "Career not found" });
 
-    // ✅ Add “force download” Cloudinary link
     const updatedCareer = {
       ...career._doc,
       downloadLink: career.cv
@@ -99,7 +105,6 @@ export const deleteCareer = async (req, res) => {
         .status(404)
         .json({ success: false, message: "Career not found" });
 
-    // ✅ Delete from Cloudinary if exists
     if (career.cv) {
       await deleteFilesFromCloudinary([career.cv], "careers_cv");
     }

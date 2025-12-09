@@ -17,7 +17,7 @@ const Career = () => {
 
   const navigate = useNavigate();
 
-  // ✅ ONLY UI purpose
+  //  ONLY UI purpose
   const handleCvChange = (e) => {
     const file = e.target.files?.[0];
     setCvName(file ? file.name : "No file chosen");
@@ -34,7 +34,7 @@ const Career = () => {
       formData.append("position", "");
       formData.append("message", data.message);
 
-      // ✅ CORRECT FILE ACCESS (FileList → File)
+      //  CORRECT FILE ACCESS (FileList → File)
       const fileObj = data.cv?.[0];
       if (fileObj) {
         formData.append("cv", fileObj);

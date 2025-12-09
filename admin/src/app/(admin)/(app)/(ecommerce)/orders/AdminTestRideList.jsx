@@ -51,6 +51,7 @@ const AdminTestRideList = () => {
               <tr>
                 <th className="px-3.5 py-3">Customer</th>
                 <th className="px-3.5 py-3">Phone</th>
+                <th className="px-3.5 py-3">Email</th>
                 <th className="px-3.5 py-3">Model</th>
                 <th className="px-3.5 py-3">City</th>
                 <th className="px-3.5 py-3">Date</th>
@@ -66,6 +67,7 @@ const AdminTestRideList = () => {
                       {ride.name}
                     </td>
                     <td className="px-3.5 py-2.5">{ride.phone}</td>
+                    <td className="px-3.5 py-2.5">{ride.email}</td>
                     <td className="px-3.5 py-2.5">{ride.modelName}</td>
                     <td className="px-3.5 py-2.5">{ride.cityLabel}</td>
                     <td className="px-3.5 py-2.5">
@@ -111,6 +113,7 @@ const AdminTestRideList = () => {
             <div className="space-y-2 text-sm text-gray-700">
               <p><strong>Name:</strong> {selectedRide.name}</p>
               <p><strong>Phone:</strong> {selectedRide.phone}</p>
+              <p><strong>Email:</strong> {selectedRide.email}</p>
               <p><strong>Pincode:</strong> {selectedRide.pincode}</p>
               <p><strong>Model:</strong> {selectedRide.modelName}</p>
               <p><strong>City:</strong> {selectedRide.cityLabel}</p>
