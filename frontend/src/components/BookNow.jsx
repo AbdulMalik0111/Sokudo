@@ -8,6 +8,7 @@ import {
    verifyPaymentThunk,
    logPaymentFailureThunk,
 } from '../features/order/OrderSlice.js';
+import { useNavigate } from 'react-router-dom';
 
 const BookNow = ({
    productName = 'Electric Scooter',
@@ -36,6 +37,7 @@ const BookNow = ({
    const { loading: isSubmitting, error } = useSelector((state) => state.order);
 
    const { isLoggedIn } = useSelector((state) => state.user);
+   const navigate = useNavigate();
 
 
    useEffect(() => {
@@ -84,6 +86,11 @@ const BookNow = ({
                   ).unwrap();
 
                   toast.success('Payment Verified Successfully ✅');
+                   navigate("/thankyou", {
+      state: {
+        formType: "Career",
+        message: `Your Application has been submitted successfully. Our team will contact you shortly.`,
+      },});
                   if (handleSubmitExternal) await handleSubmitExternal(data);
                   reset();
                } catch (err) {
@@ -137,7 +144,9 @@ const BookNow = ({
                   {isSubmitSuccessful && !isSubmitting && (
                      <p className='text-green-600 text-center mt-2 font-semibold'>
                         Submitted successfully!
+                        
                      </p>
+                    
                   )}
                   {error && (
                      <p className='text-red-600 text-center mt-2 font-semibold'>

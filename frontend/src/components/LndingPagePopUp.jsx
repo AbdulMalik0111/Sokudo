@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LandingPagePopup = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -14,6 +15,8 @@ const LandingPagePopup = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+
+  const navigate= useNavigate();
 
   useEffect(() => {
     const lastClosed = localStorage.getItem("sokudo_popup_last_closed");
@@ -71,6 +74,11 @@ const LandingPagePopup = () => {
           phone: "",
           productInterested: "",
         });
+        navigate("/thankyou", {
+      state: {
+        formType: "Interest",
+        message: `Your Application has been submitted successfully. Our team will contact you shortly.`,
+      },});
         // keep popup closed and marked as shown
         setShowPopup(false);
         localStorage.setItem("sokudo_popup_shown", "true");
