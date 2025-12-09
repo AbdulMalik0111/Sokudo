@@ -104,7 +104,7 @@ const router = createBrowserRouter([
          { path: 'blog', element: <Blog /> },
          { path: 'contact', element: <Contact /> },
          { path: 'product/:id', element: <ProductDetail /> },
-         { path: 'blog/:id', element: <BlogDetails /> },
+         { path: 'blog/:slug', element: <BlogDetails /> },
          { path: 'login', element: <LoginForm /> },
          { path: '*', element: <NotFoundPage/> },
       ],

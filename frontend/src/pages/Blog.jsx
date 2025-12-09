@@ -6,6 +6,13 @@ import { fetchAllBlogs } from "../features/blogs/BlogSlice";
 
 const classNames = (...classes) => classes.filter(Boolean).join(" ");
 
+const slugify = (str = "") =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 const BlogSkeleton = () => (
   <div className="animate-pulse space-y-6">
     {/* Featured Skeleton */}
@@ -245,7 +252,7 @@ const Blog = () => {
 
                         <div className="mt-auto pt-4">
                           <button
-                            onClick={() => navigate(`/blog/${featured._id}`)}
+                            onClick={() => navigate(`/blog/${slugify(featured.title)}`)}
                             className="btn inline-flex justify-center items-center px-5 py-2.5 text-sm font-semibold rounded-xl bg-[#ffb200] hover:bg-black text-white transition"
                           >
                             Read More
@@ -277,7 +284,7 @@ const Blog = () => {
                         />
 
                         <button
-                          onClick={() => navigate(`/blog/${b._id}`)}
+                          onClick={() => navigate(`/blog/${slugify(b.title)}`)}
                           className=" btn mt-4 inline-flex text-sm font-medium text-[#ffb200] hover:text-black"
                         >
                           Read More 

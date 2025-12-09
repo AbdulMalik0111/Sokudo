@@ -3,8 +3,17 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllBlogs } from "../features/blogs/BlogSlice";
 
+
+const slugify = (str = "") =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+
 const BlogDetails = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -15,7 +24,10 @@ const BlogDetails = () => {
     window.scrollTo(0, 0);
   }, [dispatch, status]);
 
-  const blog = blogs.find((b) => b._id === id);
+  const blog = blogs.find(
+  (b) => slugify(b.title) === slug
+);
+
 
   if (status === "loading") {
     return <div className="text-center py-20 text-lg">Loading...</div>;
@@ -35,7 +47,10 @@ const BlogDetails = () => {
     );
   }
 
-  const relatedBlogs = blogs.filter((b) => b._id !== id).slice(0, 3);
+  const relatedBlogs = blogs
+  .filter((b) => slugify(b.title) !== slug)
+  .slice(0, 3);
+
 
   return (
     <div className="bg-gray-50 mt-[69px] md:mt-[47px] text-neutral-900 min-h-screen">
@@ -104,35 +119,7 @@ const BlogDetails = () => {
             )}
           </div>
 
-          {/* Comments */}
-          {/* <div className="mt-16 border-t pt-10">
-            <h2 className="text-2xl font-semibold mb-6">Discussion (3)</h2>
-
-            <textarea
-              rows="3"
-              placeholder="Write a comment..."
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-[#ffb200]"
-            ></textarea>
-            <button className=" btn mt-3 bg-[#ffb200] text-black font-semibold px-5 py-2 rounded-lg">
-              Post Comment
-            </button>
-
-            <div className="mt-10 space-y-6">
-              {[
-                { name: "Michael Gough", date: "Feb 8, 2022", comment: "Very straight-to-point article!" },
-                { name: "Jese Leos", date: "Feb 12, 2022", comment: "Much appreciated! 😊" },
-                { name: "Bonnie Green", date: "Mar 12, 2022", comment: "Covers amazing insights 👏" },
-              ].map((c, i) => (
-                <div key={i} className="bg-gray-50 border rounded-lg p-4 shadow-sm">
-                  <div className="flex justify-between mb-2">
-                    <h4 className="font-semibold text-gray-800">{c.name}</h4>
-                    <p className="text-sm text-gray-500">{c.date}</p>
-                  </div>
-                  <p className="text-gray-700">{c.comment}</p>
-                </div>
-              ))}
-            </div>
-          </div> */}
+          
 
           {/* Related Blogs */}
           <div className="mt-20 border-t pt-12">
