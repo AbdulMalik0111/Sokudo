@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -14,7 +15,7 @@ const Career = () => {
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
+  const router = useRouter();
 
   //  ONLY UI purpose
   const handleCvChange = (e) => {
@@ -52,7 +53,7 @@ const Career = () => {
       toast.dismiss();
 
       if (res.data.success) {
-         navigate("/thankyou", {
+         router.push("/thankyou", {
       state: {
         formType: "Career",
         message: `Your Application has been submitted successfully. Our team will contact you shortly.`,
