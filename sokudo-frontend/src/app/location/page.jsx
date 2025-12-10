@@ -1,6 +1,7 @@
+"use client";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import Banner from "/videoimage.jpg";
+import { useSearchParams } from "next/navigation";
+
 
 const cityKeywords = {
   "Delhi NCR": ["delhi", "greater noida", "noida", "ghaziabad", "gurugram", "gurgaon", "faridabad"],
@@ -57,7 +58,7 @@ const Locations = () => {
           marginTop: "calc(var(--announcement-offset) ",
         }}
       >
-        <div className="absolute inset-0 -z-10 bg-center bg-cover" style={{ backgroundImage: `url(${Banner})` }} />
+        <div className="absolute inset-0 -z-10 bg-center bg-cover" style={{ backgroundImage: 'url("/videoimage.jpg")' }} />
         <div className="absolute inset-0 -z-10 bg-black/40" />
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.20),transparent_40%),radial-gradient(ellipse_at_bottom_left,rgba(255,255,255,0.12),transparent_40%)]" />
 

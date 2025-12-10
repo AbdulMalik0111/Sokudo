@@ -1,10 +1,13 @@
+"use client";
 import React, { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { FcGoogle } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
 import { userRegister } from '../features/user/UserSlice';
-import { useNavigate, Link } from 'react-router-dom';
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import toast from 'react-hot-toast';
 
 const Signup = () => {
@@ -12,7 +15,7 @@ const Signup = () => {
    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
    const passwordRef = useRef();
    const dispatch = useDispatch();
-   const navigate = useNavigate();
+   const navigate = useRouter();
 
    const { loading } = useSelector((state) => state.user);
 
@@ -36,7 +39,7 @@ const Signup = () => {
          ).unwrap();
 
          toast.success('Account created successfully 🎉');
-         navigate('/');
+         navigate.push('/');
       } catch (err) {
          toast.error(err || 'Registration failed. Please try again.');
       }
@@ -241,7 +244,7 @@ const Signup = () => {
             <p className='text-center text-sm text-gray-600 mt-8'>
                Already have an account?{' '}
                <Link
-                  to='/login'
+                  href='/login'
                   className='text-[#ffb20e] font-medium hover:underline'
                >
                   Login

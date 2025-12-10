@@ -1,7 +1,7 @@
+"use client";
 import React from "react";
-import { NavLink } from "react-router-dom";
-import Banner from "/pd1.webp";
-import SokudoFeatureGrid from "./FeaturesGrid";
+import Link from "next/link";
+import SokudoFeatureGrid from "../components/FeaturesGrid";
 
 const FeatureSections = () => {
   const sections = [
@@ -105,12 +105,12 @@ const FeatureSections = () => {
 
               <p className="text-gray-700">{sec.description}</p>
 
-              <NavLink
-                to="/our-model"
+              <Link
+                 href="/our-model"
                 className="mt-3 btn w-fit px-5 py-2.5 bg-black text-white rounded-xl hover:bg-gray-800 transition"
               >
                 {sec.btn}
-              </NavLink>
+              </Link>
             </div>
           </div>
         ))}

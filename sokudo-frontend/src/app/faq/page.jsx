@@ -1,5 +1,5 @@
+"use client";
 import React, { useEffect, useRef, useState } from "react";
-import Banner from "/videoimage.jpg";
 import { FiChevronRight } from "react-icons/fi";
 
 const FAQ = () => {

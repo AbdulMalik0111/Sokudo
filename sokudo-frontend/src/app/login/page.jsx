@@ -1,16 +1,19 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { FcGoogle } from 'react-icons/fc';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from '../features/user/UserSlice';
 
 const Login = () => {
    const [showPassword, setShowPassword] = useState(false);
    const dispatch = useDispatch();
-   const navigate = useNavigate();
+   const navigate = useRouter();
 
    const { loading, error, isLoggedIn } = useSelector((state) => state.user);
 
@@ -34,7 +37,7 @@ const Login = () => {
    useEffect(() => {
       if (isLoggedIn) {
          toast.success('Login successful 🎉');
-         navigate('/');
+         navigate.push('/');
       }
    }, [isLoggedIn, navigate]);
 
@@ -182,7 +185,7 @@ const Login = () => {
             <p className='text-center text-sm text-gray-600 mt-8'>
                Don’t have an account?{' '}
                <Link
-                  to='/register'
+                  href='/register'
                   className='text-[#ffb20e] font-medium hover:underline'
                >
                   Register

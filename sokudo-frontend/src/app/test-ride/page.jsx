@@ -1,8 +1,9 @@
+"use client"
 import React, { useState } from "react";
 import BookingModal from "../components/BookingModal";
 import toast from "react-hot-toast";
 import LocationFinder from "../components/LocationFinder";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 const TestRidePage = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -18,7 +19,7 @@ const TestRidePage = () => {
 
   const [formData, setFormData] = useState(initialFormState);
 
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   // ✅ same logic as StoreBookingSection
   const isFormComplete = Object.values(formData).every(Boolean);
@@ -29,7 +30,7 @@ const TestRidePage = () => {
 
   // ✅ same success handler style
   const handleBookingSuccess = () => {
-    navigate("/thankyou", {
+    navigate.push("/thankyou", {
       state: {
         formType: "Test Ride",
         message: `Your test ride  has been booked successfully. Our team will contact you shortly.`,

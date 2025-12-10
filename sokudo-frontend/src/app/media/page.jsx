@@ -1,6 +1,6 @@
+"use client";
 import { useEffect, useMemo, useState } from 'react';
 import Modal from 'react-modal';
-import Banner from '/videoimage.jpg';
 
 const TAGS = ['All', 'Launch', 'Review', 'Event', 'Press', 'Tutorial'];
 
