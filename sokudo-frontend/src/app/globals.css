@@ -1,0 +1,561 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import 'tailwindcss';
+
+/* Global Styles */
+body {
+   font-family: 'Poppins', sans-serif;
+   color: var(--color-text);
+   margin: 0;
+   padding: 0;
+   overflow-x: hidden;
+}
+html {
+   scroll-behavior: smooth;
+   font-size: 16px;
+}
+
+button {
+   cursor: pointer;
+}
+
+/* Reusable Button */
+.btn {
+   background-color: #ffb200;
+   color: #000;
+   border: none;
+   padding: 12px 30px;
+   border-radius: 24px;
+   font-weight: 500;
+   cursor: pointer;
+   text-transform: uppercase;
+   transition: background-color 0.2s ease, color 0.2s ease;
+   font-size: 13px;
+}
+
+.btn:hover {
+   background-color: #000;
+   color: #fff;
+}
+
+.heading {
+   font-size: 40px;
+   font-weight: 500;
+   line-height: 40px;
+   color: #000;
+}
+.paragraph {
+   font-size: 20px;
+   line-height: 24px;
+   color: #000;
+   font-weight: 500;
+   line-height: 24px;
+}
+.subparagraph {
+   font-size: 18px;
+   line-height: 20px;
+   color: #666;
+   font-weight: 500;
+   line-height: 24px;
+}
+
+/* Add these styles to your CSS file */
+.swiper-slide-scooter {
+   width: 20%;
+   height: auto;
+   transition: all 0.3s ease;
+}
+
+.scooty-bar-gradient {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background: white;
+   position: relative;
+   padding: 10px 0;
+}
+.scooty-bar-gradient::before {
+   content: '';
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 150px;
+   height: 100%;
+   background: linear-gradient(to right, rgba(0, 0, 0, 0.08), transparent);
+   z-index: 1;
+   pointer-events: none;
+}
+.scooty-bar-gradient::after {
+   content: '';
+   position: absolute;
+   right: 0;
+   top: 0;
+   width: 150px;
+   height: 100%;
+   background: linear-gradient(to left, rgba(0, 0, 0, 0.08), transparent);
+   z-index: 1;
+   pointer-events: none;
+}
+
+@media (max-width: 768px) {
+   .swiper-slide-scooter {
+      width: 90%;
+   }
+}
+
+.scooter-swiper {
+   padding: 20px 0;
+   overflow: visible;
+}
+
+/* Style for active slide - adds to the framer-motion effect */
+.swiper-slide-active .motion-div {
+   transform: scale(1.1);
+   z-index: 10;
+}
+
+@keyframes fillDot {
+   0% {
+      width: 0;
+   }
+   100% {
+      width: 100%;
+   }
+}
+
+.gauge-cont {
+   display: inline-block;
+   position: relative;
+   width: 14rem;
+   height: 7rem;
+   margin-right: 2rem;
+}
+.gauge {
+   width: 100%;
+   height: 100%;
+   position: relative;
+   overflow: hidden;
+}
+.gauge-cont .pointer {
+   display: block;
+   position: absolute;
+   z-index: 4;
+   bottom: 25px;
+   left: 50%;
+   margin-left: -23px;
+   transform-origin: center center;
+}
+
+.heart-icon {
+   animation: heartbeat 2s infinite;
+   height: 50px;
+   width: 50px;
+   margin-left: 10px;
+}
+
+.page-width {
+   max-width: 96% !important;
+   margin: 0 auto;
+}
+
+@keyframes heartbeat {
+   0% {
+      transform: scale(1);
+   }
+   50% {
+      transform: scale(1.2);
+   }
+   100% {
+      transform: scale(1);
+   }
+}
+.contact-map {
+   position: relative; /* ensures the absolute icon centers within */
+}
+
+/* same positioning */
+.contact-map .contact-icon {
+   position: absolute;
+   left: 50%;
+   top: 46%;
+   transform: translate(-50%, -50%);
+   cursor: pointer;
+}
+
+/* glow ring */
+.contact-map .contact-icon::before {
+   content: '';
+   position: absolute;
+   left: -40px;
+   right: 0;
+   top: 46%;
+   width: 130px;
+   height: 60px;
+   z-index: -1;
+   margin: auto;
+   border-radius: 50%;
+   background: rgba(255, 255, 255, 0.5);
+   border: 1px solid var(--white-color);
+}
+
+/* drop shadow */
+.contact-map .contact-icon::after {
+   content: '';
+   position: absolute;
+   left: 0;
+   right: 0;
+   top: 90%;
+   width: 38px;
+   height: 18px;
+   z-index: -1;
+   margin: auto;
+   border-radius: 50%;
+   background: rgba(13, 13, 12, 0.2);
+}
+
+.contact-map .contact-icon .contact-icon__svg,
+.contact-map .contact-icon svg {
+   width: 48px;
+   height: 48px;
+   color: var(--primary-color, #ffb200);
+   animation: jumpAni 1s ease-in-out infinite alternate;
+   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes jumpAni {
+   0% {
+      transform: translateY(0);
+   }
+   100% {
+      transform: translateY(-8px);
+   }
+}
+
+@keyframes bannerFill {
+   from {
+      transform: translateX(-100%);
+   }
+   to {
+      transform: translateX(0);
+   }
+}
+
+@media (max-width: 768px) {
+   .gauge-cont .pointer {
+      display: block;
+      position: absolute;
+      z-index: 4;
+      bottom: 39px;
+      left: 54%;
+      margin-left: -23px;
+      transform-origin: center center;
+   }
+   .heading {
+      font-size: 32px;
+      line-height: 32px;
+   }
+}
+
+.menu-item {
+   @apply flex items-center gap-3 py-2 px-3 rounded-md text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700;
+}
+
+.menu-item {
+   @apply flex items-center gap-3 py-2 px-3 rounded-md 
+         text-black bg-white 
+         hover:bg-gray-800 hover:text-white transition;
+}
+
+.menu-item-active {
+   @apply bg-gray-800 text-white;
+}
+
+/* Mobile par 3 lines truncate karna */
+.truncate-mobile {
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* 3 lines */
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+/* Full text */
+.show-full {
+   display: block;
+}
+
+@keyframes blink {
+   0%,
+   100% {
+      opacity: 1;
+      transform: scale(1);
+   }
+   50% {
+      opacity: 0.65;
+      transform: scale(1.08);
+   }
+}
+
+@keyframes bounceSlow {
+   0%,
+   100% {
+      transform: translateY(0);
+   }
+   50% {
+      transform: translateY(-8px);
+   }
+}
+
+/* Apply blink animation */
+.pulsate-icon {
+   animation: blink 2s infinite ease-in-out;
+}
+
+/* Apply bounce-slow animation */
+.animate-bounce-slow {
+   animation: bounceSlow 3s infinite ease-in-out;
+}
+
+.animate-spin-slow {
+   animation: spin 14s linear infinite;
+}
+
+@keyframes spin {
+   from {
+      transform: rotate(0deg);
+   }
+   to {
+      transform: rotate(360deg);
+   }
+}
+
+/* ---------- wrapper ---------- */
+/* ---------------- LOADER FULL SCREEN ---------------- */
+.loader-wrapper {
+   position: fixed;
+   inset: 0;
+   background-color: #fff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+   z-index: 999999999;
+   background-size: cover;
+}
+
+/* ---------------- SCOOTER IMAGE ---------------- */
+.scooter-img {
+   width: 420px;
+   position: absolute;
+   bottom: 20%;
+   animation: scootAcross 3.2s ease-in-out infinite;
+   pointer-events: none;
+}
+
+/* ---------------- SCOOTER MOVEMENT ---------------- */
+@keyframes scootAcross {
+   0% {
+      transform: translateX(-380px) scale(0.96) rotate(0deg);
+      opacity: 0.3;
+   }
+
+   10% {
+      transform: translateX(-300px) scale(1) rotate(1deg);
+      opacity: 0.7;
+   }
+
+   25% {
+      transform: translateX(-180px) rotate(2deg);
+      opacity: 1;
+   }
+
+   45% {
+      transform: translateX(-60px) rotate(3deg);
+   }
+
+   60% {
+      transform: translateX(20vw) rotate(1deg);
+   }
+
+   80% {
+      transform: translateX(60vw) rotate(-2deg);
+   }
+
+   95% {
+      transform: translateX(100vw) rotate(-4deg);
+      opacity: 0.8;
+   }
+
+   100% {
+      transform: translateX(130vw) rotate(-5deg);
+      opacity: 0;
+   }
+}
+
+/* ---------------- SMOKE FOLLOW SCOOTER ---------------- */
+.smoke-wrapper {
+   position: absolute;
+   bottom: 20%;
+   width: 0;
+   height: 0;
+   animation: scootFollow 3.2s ease-in-out infinite;
+}
+
+@keyframes scootFollow {
+   0% {
+      transform: translateX(-350px);
+      opacity: 1;
+   }
+   15% {
+      transform: translateX(-250px);
+   }
+   30% {
+      transform: translateX(-150px);
+   }
+   50% {
+      transform: translateX(0px);
+   }
+   75% {
+      transform: translateX(50vw);
+   }
+   90% {
+      transform: translateX(95vw);
+   }
+   100% {
+      transform: translateX(120vw);
+      opacity: 0;
+   }
+}
+
+/* ---------------- SMOKE CONTAINER (relative to wheel) ---------------- */
+.smoke-container {
+   position: absolute;
+   bottom: 60px;
+   left: -130px;
+   width: 200px;
+   height: 150px;
+   overflow: visible;
+}
+
+/* ---------------- BASE SMOKE PUFF ---------------- */
+.smoke {
+   position: absolute;
+   bottom: 0;
+   width: 26px;
+   height: 26px;
+   border-radius: 50%;
+   background: radial-gradient(
+      circle at 40% 30%,
+      rgba(180, 180, 180, 0.55),
+      rgba(160, 160, 160, 0.45) 20%,
+      rgba(130, 130, 130, 0.25) 50%,
+      rgba(100, 100, 100, 0.15) 70%
+   );
+   opacity: 0;
+   filter: blur(2px);
+}
+
+/* ---------------- SMOKE TRAIL ANIMATION ---------------- */
+@keyframes puffTrail {
+   0% {
+      opacity: 0;
+      transform: translate(0, 0) scale(0.4);
+   }
+   20% {
+      opacity: 1;
+      transform: translate(-20px, -10px) scale(0.8);
+   }
+   40% {
+      opacity: 0.8;
+      transform: translate(-50px, -30px) scale(1.2);
+   }
+   70% {
+      opacity: 0.3;
+      transform: translate(-90px, -55px) scale(1.7);
+   }
+   100% {
+      opacity: 0;
+      transform: translate(-140px, -90px) scale(2.2);
+   }
+}
+
+/* ---------------- MULTIPLE PUFF INSTANCES ---------------- */
+.puff-1 {
+   animation: puffTrail 1.6s infinite;
+   animation-delay: 0s;
+}
+.puff-2 {
+   animation: puffTrail 1.6s infinite;
+   animation-delay: 0.1s;
+}
+.puff-3 {
+   animation: puffTrail 1.6s infinite;
+   animation-delay: 0.2s;
+}
+.puff-4 {
+   animation: puffTrail 1.6s infinite;
+   animation-delay: 0.3s;
+}
+.puff-5 {
+   animation: puffTrail 1.6s infinite;
+   animation-delay: 0.4s;
+}
+.puff-6 {
+   animation: puffTrail 1.6s infinite;
+   animation-delay: 0.5s;
+}
+.puff-7 {
+   animation: puffTrail 1.6s infinite;
+   animation-delay: 0.6s;
+}
+.puff-8 {
+   animation: puffTrail 1.6s infinite;
+   animation-delay: 0.7s;
+}
+.puff-9 {
+   animation: puffTrail 1.6s infinite;
+   animation-delay: 0.8s;
+}
+.puff-10 {
+   animation: puffTrail 1.6s infinite;
+   animation-delay: 0.9s;
+}
+.puff-11 {
+   animation: puffTrail 1.6s infinite;
+   animation-delay: 1s;
+}
+.puff-12 {
+   animation: puffTrail 1.6s infinite;
+   animation-delay: 1.1s;
+}
+
+/* ---------------- LOADING TEXT ---------------- */
+.loading-text {
+   position: absolute;
+   bottom: 15%;
+   font-size: 32px;
+   font-weight: 600;
+   color: rgb(235, 165, 16);
+   font-family: 'Poppins';
+}
+
+.loader-logo {
+   position: absolute;
+   top: 10px; /* distance from top */
+   left: 40%;
+   width: 260px; /* adjust size */
+   height: auto;
+}
+
+/* Logo fade-in animation */
+
+:root {
+   --announcement-offset: 42px;
+   --header-height: 69px; /* mobile */
+}
+
+@media (min-width: 768px) {
+   :root {
+      --header-height: 42px; /* md */
+   }
+}
