@@ -9,7 +9,7 @@ export const getMyTestRidesThunk = createAsyncThunk(
       const token = getState().user.token;
 
       const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/test-ride/my-test-rides`,
+        `${process.env.NEXT_PUBLIC_API_URL}/test-ride/my-test-rides`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
