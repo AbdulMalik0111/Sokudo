@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 const Tab1 = '/one.webp';
 const Tab2 = '/productImg/four.webp';
-const Tab3 = '/three.webp';
-const Tab4 = '/two.webp';
+const Tab3 = '/productImg/three.webp';
+const Tab4 = '/productImg/two.webp';
 const Tab5 = '/productImg/eighth.webp';
 const Tab6 = '/productImg/DSC_9179.jpg';
 

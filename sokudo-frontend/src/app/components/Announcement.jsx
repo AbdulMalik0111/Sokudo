@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
+import Link from 'next/link';
 
 const Announcement = ({ visible, setVisible }) => {
    const [autoHide, setAutoHide] = useState(false);
@@ -44,12 +45,12 @@ const Announcement = ({ visible, setVisible }) => {
             <p className='w-full text-center text-[13px] sm:text-sm leading-snug sm:leading-6 py-2 sm:py-3 pr-12 sm:pr-14'>
                Introducing SOKUDO the future of motorcycling. Starts at an
                introductory price of ₹89,889.
-               <a
+               <Link
                   href='/our-model'
                   className='text-[#FFB200] underline font-medium ml-1'
                >
                   Book Yours Today
-               </a>
+               </Link>
                .
             </p>
 
