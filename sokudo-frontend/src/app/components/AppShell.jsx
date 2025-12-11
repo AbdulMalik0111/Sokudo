@@ -9,6 +9,7 @@ const noLayoutRoutes = [
    '/forget',
    '/reset',
    '/verify',
+   '/auth/success',
 ];
 
 export default function AppShell({ children }) {
