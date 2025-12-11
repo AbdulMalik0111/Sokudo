@@ -97,7 +97,7 @@ const Dealership = () => {
 
          {/* SECTION 1 – WHY CHOOSE US */}
          <section className="page-width mx-auto px-4 py-16">
-  <h2 className="text-4xl font-bold text-center mb-10">Why Choose Us</h2>
+  <h2 className="heading text-4xl font-bold text-center mb-10">Why Choose Us</h2>
 
   <p className="text-center max-w-3xl mx-auto text-gray-600 mb-12">
     Join hands with <span className="text-[#FFB200] font-semibold">Sokudo Electric India</span> to start your EV dealership journey. 
