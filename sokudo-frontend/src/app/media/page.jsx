@@ -169,7 +169,7 @@ const Media = () => {
    const [selectedIndex, setSelectedIndex] = useState(null);
 
    useEffect(() => {
-      Modal.setAppElement('#root');
+      Modal.setAppElement("body");
    }, []);
 
    const filtered = useMemo(() => {

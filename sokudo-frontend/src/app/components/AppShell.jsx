@@ -6,8 +6,9 @@ import Footer from './Footer';
 const noLayoutRoutes = [
    '/login',
    '/register',
-   '/forget-password',
-   '/reset-password',
+   '/forget',
+   '/reset',
+   '/verify',
 ];
 
 export default function AppShell({ children }) {

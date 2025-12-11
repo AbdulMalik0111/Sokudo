@@ -1,6 +1,7 @@
 // src/pages/ProductDetails.jsx
+"use client";
 import React, { useState, useMemo, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useParams, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import Modal from "react-modal";
 import toast from "react-hot-toast";
@@ -16,10 +17,9 @@ import {
   FiMaximize,
   FiDisc,
 } from "react-icons/fi";
-import Banner from "/pd1.webp";
-import BookNow from "../components/BookNow";
+import BookNow from "../../components/BookNow";
 
-Modal.setAppElement("#root");
+// Modal.setAppElement("#root");
 
 const formatPrice = (price) =>
   new Intl.NumberFormat("en-IN", {
@@ -65,14 +65,14 @@ const DEFAULT_CITIES = {
 };
 
 const ProductDetails = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const product = location.state?.product;
+  const navigate = useRouter();
+  const { id } = useParams();
 
   const userState = useSelector((state) => state.user) || {};
   const { userInfo = {}, isLoggedIn = false } = userState;
 
   const allProducts = useSelector((state) => state.product?.items || []);
+  const product = allProducts.find((p) => p._id === id);
 
   const [selectedColor, setSelectedColor] = useState(null);
   const [currentImages, setCurrentImages] = useState(product?.images || []);
@@ -200,7 +200,7 @@ const ProductDetails = () => {
             Product Not Found
           </h2>
           <button
-            onClick={() => navigate("/our-models")}
+            onClick={() => navigate.push("/our-models")}
             className="text-[#ffb200] font-medium hover:underline"
           >
             Go back to models
@@ -225,7 +225,7 @@ const ProductDetails = () => {
       >
               <div
                 className="absolute inset-0 -z-10 bg-center bg-cover"
-                style={{ backgroundImage: `url(${Banner})` }}
+                style={{ backgroundImage: 'url("/pd1.webp")' }}
               />
               <div className="absolute inset-0 -z-10 bg-black/40" />
               <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.20),transparent_40%),radial-gradient(ellipse_at_bottom_left,rgba(255,255,255,0.12),transparent_40%)]" />

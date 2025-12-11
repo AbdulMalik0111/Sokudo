@@ -1,10 +1,12 @@
+"use client"
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
+
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 const CreatePassword = () => {
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const email = sessionStorage.getItem("resetEmail");
   const otp = sessionStorage.getItem("resetOTP");
 
@@ -17,7 +19,7 @@ const CreatePassword = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/customers/reset-password-otp`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/customers/reset-password-otp`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -37,7 +39,7 @@ const CreatePassword = () => {
       toast.success("Password Reset Successful!");
       sessionStorage.clear();
 
-      setTimeout(() => navigate("/login"), 1000);
+      setTimeout(() => navigate.push("/login"), 1000);
     } catch {
       toast.error("Error resetting password");
     } finally {

@@ -26,11 +26,13 @@ const Contact = () => {
 
          toast.success(response.message || 'Message sent successfully!');
          reset();
-          router.push("/thankyou", {
-      state: {
-        formType: "Contact",
-        message: `Your Application has been submitted successfully. Our team will contact you shortly.`,
-      },});
+         const formType = "Contact";
+  const message = "Your Application has been submitted successfully. Our team will contact you shortly.";
+
+  router.push(
+    `/thankyou?formType=${encodeURIComponent(formType)}&message=${encodeURIComponent(message)}`
+  );
+          
       } catch (error) {
          console.error('Contact form error:', error);
          if (error.response?.status === 429) {

@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
-import { Link } from "react-router-dom";
-import Banner from "/pd.webp";
+
+import Image from "next/image";
+import Link from "next/link";
 import { GiScooter } from "react-icons/gi";
 
 const NotFoundPage = () => {
@@ -23,7 +25,7 @@ const NotFoundPage = () => {
       >
         <div
           className="absolute inset-0 -z-10 bg-center bg-cover"
-          style={{ backgroundImage: `url(${Banner})` }}
+          style={{ backgroundImage: 'url("/pd.webp";)' }}
         />
         <div className="absolute inset-0 -z-10 bg-black/40" />
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.20),transparent_40%),radial-gradient(ellipse_at_bottom_left,rgba(255,255,255,0.12),transparent_40%)]" />
@@ -55,7 +57,7 @@ const NotFoundPage = () => {
 
           {/* BUTTON */}
           <Link
-            to="/"
+            href="/"
             className="inline-block mt-10 px-8 py-3 rounded-full bg-gray-900 text-white text-sm font-semibold hover:bg-black transition"
           >
             Back to Home

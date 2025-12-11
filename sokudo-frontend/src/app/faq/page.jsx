@@ -29,13 +29,20 @@ const FAQ = () => {
 
   // Auto-scroll to active answer
   useEffect(() => {
-    if (answerRefs.current[activeIndex]?.current) {
-      answerRefs.current[activeIndex].current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  }, [activeIndex]);
+  const node = answerRefs.current[activeIndex]?.current;
+  const container = rightSectionRef.current;
+
+  if (node && container) {
+    const containerTop = container.getBoundingClientRect().top;
+    const nodeTop = node.getBoundingClientRect().top;
+
+    container.scrollTo({
+      top: container.scrollTop + (nodeTop - containerTop) - 20,
+      behavior: "smooth",
+    });
+  }
+}, [activeIndex]);
+
 
   if (faqs.length === 0) {
     return <div className="text-center py-20 text-gray-500">Loading FAQs...</div>;

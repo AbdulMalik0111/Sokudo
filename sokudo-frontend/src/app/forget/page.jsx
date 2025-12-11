@@ -1,7 +1,8 @@
+"use client"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
@@ -16,7 +17,7 @@ const ForgotPassword = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/customers/send-otp`,
+        `${process.env.NEXT_PUBLIC_API_URL}/customers/send-otp`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -106,7 +107,7 @@ const ForgotPassword = () => {
           <p className="text-center text-sm text-gray-600 mt-4">
             Remember password?{" "}
             <Link
-              to="/login"
+              href="/login"
               className="text-[#ffb20e] font-medium hover:underline"
             >
               Back to Login

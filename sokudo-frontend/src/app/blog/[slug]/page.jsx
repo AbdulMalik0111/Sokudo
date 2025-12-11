@@ -1,7 +1,10 @@
+"use client";
 import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllBlogs } from "../features/blogs/BlogSlice";
+import { fetchAllBlogs } from "../../features/blogs/BlogSlice";
 
 
 const slugify = (str = "") =>
@@ -14,7 +17,7 @@ const slugify = (str = "") =>
 
 const BlogDetails = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const dispatch = useDispatch();
 
   const { items: blogs = [], status } = useSelector((state) => state.blogs);
@@ -38,7 +41,7 @@ const BlogDetails = () => {
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
         <p className="text-gray-700 text-lg mb-4">Blog not found!</p>
         <button
-          onClick={() => navigate("/blog")}
+          onClick={() => navigate.push("/blog")}
           className="bg-[#ffb200] text-black px-5 py-2 rounded-lg font-medium"
         >
           Back to Blogs
@@ -133,7 +136,7 @@ const BlogDetails = () => {
                     <h3 className="text-lg font-semibold text-gray-800 mb-2">{b.title}</h3>
                     <p className="text-sm text-gray-600 mb-4 line-clamp-3">{b.excerpt}</p>
                     <button
-                      onClick={() => navigate(`/blog/${b._id}`)}
+                      onClick={() => navigate.push(`/blog/${slugify(b.title)}`)}
                       className="btn justify-end text-[#ffb200] font-medium "
                     >
                       Read More 
@@ -147,7 +150,7 @@ const BlogDetails = () => {
           {/* Back Button */}
           <div className="mt-12 flex justify-center">
             <button
-              onClick={() => navigate("/blog")}
+              onClick={() => navigate.push("/blog")}
               className="btn bg-[#ffb200] text-black px-6 py-2.5 rounded-lg font-medium"
             >
               ← Back to Blogs

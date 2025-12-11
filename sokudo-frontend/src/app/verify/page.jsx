@@ -1,10 +1,12 @@
+"use client";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
+
 
 const VerifyOtp = () => {
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const email = sessionStorage.getItem("resetEmail");
 
   const {
@@ -65,7 +67,7 @@ const VerifyOtp = () => {
       sessionStorage.setItem("resetOTP", data.otp);
 
       toast.success("OTP Verified!");
-      setTimeout(() => navigate("/reset"), 800);
+      setTimeout(() => navigate.push("/reset"), 800);
     } catch {
       toast.error("Verification failed");
     } finally {

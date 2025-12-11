@@ -42,7 +42,7 @@ const Career = () => {
       }
 
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/career`,
+        `${process.env.NEXT_PUBLIC_API_URL}/career`,
         formData,
         {
           headers: {
@@ -54,11 +54,12 @@ const Career = () => {
       toast.dismiss();
 
       if (res.data.success) {
-         router.push("/thankyou", {
-      state: {
-        formType: "Career",
-        message: `Your Application has been submitted successfully. Our team will contact you shortly.`,
-      },});
+         const formType = "Career";
+  const message = "Your Application has been submitted successfully. Our team will contact you shortly.";
+
+  router.push(
+    `/thankyou?formType=${encodeURIComponent(formType)}&message=${encodeURIComponent(message)}`
+  );
         toast.success("🎉 Application submitted successfully!");
         reset();
 

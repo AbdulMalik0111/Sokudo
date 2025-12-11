@@ -12,6 +12,13 @@ const stripHtml = (html = '') => {
    return temp.textContent || temp.innerText || '';
 };
 
+const slugify = (str = "") =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 const SkeletonCard = () => (
    <div
       className='h-full flex flex-col rounded-md overflow-hidden bg-white border-[#E8E8E8] border animate-pulse'
@@ -100,7 +107,7 @@ const NewArticlesBlogs = () => {
                           role='listitem'
                           tabIndex={0}
                           aria-label={`Read blog article: ${title}`}
-                          onClick={() => router.push('/blog')}
+                          onClick={() => router.push(`/blog/${slugify(b.title)}`)}
                           onKeyDown={(e) => {
                              if (e.key === 'Enter') router.push('/blog');
                           }}

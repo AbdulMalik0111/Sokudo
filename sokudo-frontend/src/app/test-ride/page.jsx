@@ -19,7 +19,7 @@ const TestRidePage = () => {
 
   const [formData, setFormData] = useState(initialFormState);
 
-  const navigate = useRouter();
+  const router = useRouter();
 
   // ✅ same logic as StoreBookingSection
   const isFormComplete = Object.values(formData).every(Boolean);
@@ -30,11 +30,13 @@ const TestRidePage = () => {
 
   // ✅ same success handler style
   const handleBookingSuccess = () => {
-    navigate.push("/thankyou", {
-      state: {
-        formType: "Test Ride",
-        message: `Your test ride  has been booked successfully. Our team will contact you shortly.`,
-      },});
+    const formType = "Test Ride";
+  const message = "Your test ride  has been booked successfully. Our team will contact you shortly.";
+
+  router.push(
+    `/thankyou?formType=${encodeURIComponent(formType)}&message=${encodeURIComponent(message)}`
+  );
+   
     toast.success("Test Ride Booked Successfully ");
     setFormData(initialFormState);
     setOpenModal(false);

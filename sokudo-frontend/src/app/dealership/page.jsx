@@ -60,11 +60,12 @@ const Dealership = () => {
          const response = await submitDealershipForm(data);
          toast.success(response.message || 'Application submitted!');
          reset();
-          router.push("/thankyou", {
-      state: {
-        formType: "Dealership",
-        message: `Your Application has been submitted. Our team will contact you shortly.`,
-      },});
+          const formType = "Dealership";
+  const message = "Your Application has been submitted successfully. Our team will contact you shortly.";
+
+  router.push(
+    `/thankyou?formType=${encodeURIComponent(formType)}&message=${encodeURIComponent(message)}`
+  );
       } catch (error) {
          toast.error(error.response?.data?.message || 'Submission failed!');
       } finally {

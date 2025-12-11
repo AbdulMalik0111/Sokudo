@@ -18,8 +18,8 @@ const cityKeywords = {
 const Locations = () => {
   const [showrooms, setShowrooms] = useState([]);
   const [visibleCount, setVisibleCount] = useState(12); // initially show 12
-  const [searchParams] = useSearchParams();
-  const cityParam = searchParams.get("city"); // e.g. "Delhi NCR"
+  const searchParams = useSearchParams();
+  const cityParam = searchParams?.get('city') || null; // e.g. "Delhi NCR"
 
   useEffect(() => {
     fetch("/showrooms.json")
