@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import avatar1 from '@/assets/images/user/avatar-1.png';
+import avatar1 from '@/assets/images/user/avatar-icon.png';
 import { LuLoader, LuLogOut } from 'react-icons/lu';
 
 const ProfileDropdown = () => {
@@ -154,12 +154,7 @@ const ProfileDropdown = () => {
                       <p className="text-sm text-gray-500">Email</p>
                       <p className="font-semibold text-gray-800">{user?.email}</p>
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Contact</p>
-                      <p className="font-semibold text-gray-800">
-                        {user?.contact || 'N/A'}
-                      </p>
-                    </div>
+                    
                   </div>
                 )}
 

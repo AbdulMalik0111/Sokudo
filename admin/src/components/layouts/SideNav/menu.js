@@ -85,8 +85,8 @@ export const menuItemsData = [
     href: '/transactions',
   },
   {
-    key: 'TestRide Booking',
-    label: 'TestRide Booking',
+    key: 'Test Ride Booking',
+    label: 'Test Ride Booking',
     icon: LuBike ,
     href: '/test-ride',
   },
