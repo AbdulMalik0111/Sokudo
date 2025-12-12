@@ -30,6 +30,7 @@ const Login = () => {
       const backend =
          process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
       window.location.href = `${backend}/customers/auth/google`;
+     
    };
 
    // ✅ Redirect on success
